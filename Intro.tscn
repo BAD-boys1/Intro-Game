@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://djmniqstcsj8v"]
+[gd_scene load_steps=10 format=3 uid="uid://djmniqstcsj8v"]
 
 [ext_resource type="PackedScene" uid="uid://7a7gj7kpo53q" path="res://buzz.tscn" id="1_1wpnt"]
 [ext_resource type="Texture2D" uid="uid://db0mh7e3gxylf" path="res://Grass001_1K-JPG_Color.jpg" id="1_2dks7"]
+[ext_resource type="ArrayMesh" uid="uid://djpblflpesl1t" path="res://3D Models/Copy of White Picket Fence/fence.obj" id="2_ypf8a"]
 [ext_resource type="Script" path="res://Label.gd" id="5_drur0"]
 [ext_resource type="PackedScene" uid="uid://2agx3tcuqkd1" path="res://Coin.tscn" id="5_ww6e7"]
 [ext_resource type="Script" path="res://Coin.gd" id="6_76rjy"]
@@ -103,7 +104,7 @@ transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.
 size = Vector3(1.66153, 4.41507, 2.57468)
 
 [node name="Wall13" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 8.01966, 3.14263, -5.26104)
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.67907, 3.14263, -5.26104)
 size = Vector3(0.294671, 5.13594, 8.14851)
 
 [node name="Step1" type="CSGBox3D" parent="Floor"]
@@ -121,6 +122,26 @@ size = Vector3(1.02171, 0.388822, 1.63639)
 [node name="Step4" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.1186, 4.18968, 0.326849)
 size = Vector3(1.02171, 0.388822, 1.63639)
+
+[node name="Fence1" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.086656, 0, 0, 0, -0.000213995, 0.023246, 0, -0.0565029, -8.80406e-05, -8.58228, 0.542578, -12.6321)
+mesh = ExtResource("2_ypf8a")
+skeleton = NodePath("../..")
+
+[node name="Fence2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.086656, 0, 0, 0, -0.000213995, 0.023246, 0, -0.0565029, -8.80406e-05, -8.58228, 0.542578, 11.7319)
+mesh = ExtResource("2_ypf8a")
+skeleton = NodePath("../..")
+
+[node name="Fence3" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.00125981, -0.056497, -8.80313e-05, 0, -0.000213995, 0.023246, -0.0866469, -0.000821445, -1.27994e-06, -12.6393, 0.542578, 8.35083)
+mesh = ExtResource("2_ypf8a")
+skeleton = NodePath("../..")
+
+[node name="Fence4" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.00125981, -0.056497, -8.80313e-05, 0, -0.000213995, 0.023246, -0.0866469, -0.000821445, -1.27994e-06, 11.8027, 0.542578, 8.35083)
+mesh = ExtResource("2_ypf8a")
+skeleton = NodePath("../..")
 
 [node name="Ball" parent="." instance=ExtResource("1_1wpnt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85623, 0.755223, 1.09744)
