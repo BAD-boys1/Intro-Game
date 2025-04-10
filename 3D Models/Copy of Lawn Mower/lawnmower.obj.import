@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3ukqc6uej3af"
+path="res://.godot/imported/lawnmower.obj-28f82c459ea668e5c2e9bf40b31f2cbd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lawnmower.obj-28f82c459ea668e5c2e9bf40b31f2cbd.mesh"]
+
+source_file="res://3D Models/Copy of Lawn Mower/lawnmower.obj"
+dest_files=["res://.godot/imported/lawnmower.obj-28f82c459ea668e5c2e9bf40b31f2cbd.mesh", "res://.godot/imported/lawnmower.obj-28f82c459ea668e5c2e9bf40b31f2cbd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

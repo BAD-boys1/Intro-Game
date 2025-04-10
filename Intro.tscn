@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3 uid="uid://djmniqstcsj8v"]
+
+[ext_resource type="PackedScene" uid="uid://7a7gj7kpo53q" path="res://buzz.tscn" id="1_1wpnt"]
+[ext_resource type="Texture2D" uid="uid://db0mh7e3gxylf" path="res://Grass001_1K-JPG_Color.jpg" id="1_2dks7"]
+[ext_resource type="Script" path="res://Label.gd" id="5_drur0"]
+[ext_resource type="PackedScene" uid="uid://2agx3tcuqkd1" path="res://Coin.tscn" id="5_ww6e7"]
+[ext_resource type="Script" path="res://Coin.gd" id="6_76rjy"]
+[ext_resource type="Script" path="res://Time Label.gd" id="7_s8gey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rf1v"]
+albedo_texture = ExtResource("1_2dks7")
+
+[sub_resource type="GDScript" id="GDScript_2ppte"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	#var input_dir = Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if Input.is_action_pressed(\"ui_left\"):
+		velocity.x = -SPEED
+	elif Input.is_action_pressed(\"ui_right\"):
+		velocity.x = SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	move_and_slide()
+"
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460791, 0, 0)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.396406, 1.4953)
+material_override = SubResource("StandardMaterial3D_6rf1v")
+use_collision = true
+size = Vector3(25, 1, 25)
+
+[node name="Wall1" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.15593, -1.4953)
+size = Vector3(0.235923, 1.29148, 10.2238)
+
+[node name="Wall2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-0.0237517, -2.30635e-10, 0.999718, -0.0365985, 0.99933, -0.000869522, -0.999048, -0.0366088, -0.0237358, -6.10527, 1.18979, -1.4953)
+size = Vector3(0.235923, 1.29148, 8.78823)
+
+[node name="Wall3" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.99991, 0, 0.0134211, 0, 1, 0, -0.0134211, 0, 0.99991, -0.938531, 1.15593, 4.1451)
+size = Vector3(0.235923, 1.29148, 6.56535)
+
+[node name="Wall4" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.0358763, 0, 0.999356, 0, 1, 0, -0.999356, 0, 0.0358763, -7.32061, 1.15593, 1.56623)
+size = Vector3(0.235923, 1.29148, 9.00667)
+
+[node name="Wall5" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-1, 0, -0.000680652, 0, 1, 0, 0.000680652, 0, -1, -8.06727, 1.15593, 7.71875)
+size = Vector3(0.235923, 1.29148, 7.78144)
+
+[node name="Wall6" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-0.949705, 0, -0.313147, 0, 1, 0, 0.313147, 0, -0.949705, -4.61313, 1.15593, 7.61043)
+size = Vector3(0.235923, 1.29148, 7.66558)
+
+[node name="Wall7" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.73508, 1.15593, 8.13764)
+size = Vector3(0.235923, 1.29148, 7.66558)
+
+[node name="Wall8" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.560668, 0, 0.828041, 0, 1, 0, -0.828041, 0, 0.560668, 7.59575, 1.15593, 4.88047)
+size = Vector3(0.235923, 1.29148, 8.97361)
+
+[node name="Wall9" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-0.0638182, 0, 0.997962, 0, 1, 0, -0.997962, 0, -0.0638182, 6.72779, 1.15871, 10.1795)
+size = Vector3(0.235923, 1.29148, 7.66558)
+
+[node name="Wall10" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-0.0226176, 0, 0.999744, 0, 1, 0, -0.999744, 0, -0.0226176, -6.47984, 1.16404, -3.26342)
+size = Vector3(3.26492, 1.29148, 5.23845)
+
+[node name="Wall11" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.67551, 1.17508, 0.8218)
+size = Vector3(0.235923, 1.29148, 8.68563)
+
+[node name="Wall12" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.77454, 2.76192, -0.348475)
+size = Vector3(1.66153, 4.41507, 2.57468)
+
+[node name="Wall13" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 6.82504, 3.14263, -5.26104)
+size = Vector3(0.294671, 5.13594, 8.14851)
+
+[node name="Step1" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 5.42183, 1.518, -1.63001)
+size = Vector3(1.02171, 0.388822, 1.63639)
+
+[node name="Step2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.89382, 2.33608, -2.72143)
+size = Vector3(1.02171, 0.388822, 1.63639)
+
+[node name="Step3" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.0228, 3.36663, -1.72467)
+size = Vector3(1.02171, 0.388822, 1.63639)
+
+[node name="Step4" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.1186, 4.18968, 0.326849)
+size = Vector3(1.02171, 0.388822, 1.63639)
+
+[node name="Ball" parent="." instance=ExtResource("1_1wpnt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85623, 0.755223, 1.09744)
+script = SubResource("GDScript_2ppte")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.994
+offset_left = -2.0
+offset_top = 4.0
+offset_bottom = 4.89398
+theme_override_font_sizes/font_size = 50
+text = "Coins = 0
+"
+script = ExtResource("5_drur0")
+
+[node name="Time Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 0.998
+offset_top = 71.0
+offset_right = -908.153
+offset_bottom = -504.702
+theme_override_font_sizes/font_size = 50
+text = "Timer = 5"
+script = ExtResource("7_s8gey")
+
+[node name="Timer" type="Timer" parent="Control/Time Label"]
+autostart = true
+
+[node name="Coin" parent="." instance=ExtResource("5_ww6e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.406362, 0.286794, 0)
+script = ExtResource("6_76rjy")
+
+[node name="Timer" type="Timer" parent="Coin"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978803, 0.204804, 0, -0.204804, 0.978803, -0.859555, 3.16625, 8.85575)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.559453, 0.828862, 0, -0.828862, 0.559453, -3.16071, 8.99666, 6.31993)
+
+[connection signal="timeout" from="Control/Time Label/Timer" to="Control/Time Label" method="_on_timer_timeout"]
+[connection signal="coinCollected" from="Coin" to="Control/Label" method="_on_coin_coin_collected"]
