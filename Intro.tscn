@@ -67,7 +67,7 @@ transform = Transform3D(0.99991, 0, 0.0134211, 0, 1, 0, -0.0134211, 0, 0.99991, 
 size = Vector3(0.235923, 1.29148, 6.56535)
 
 [node name="Wall4" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(0.0358763, 0, 0.999356, 0, 1, 0, -0.999356, 0, 0.0358763, -7.32061, 1.15593, 1.56623)
+transform = Transform3D(0.0358763, 0, 0.999356, 0, 1, 0, -0.999356, 0, 0.0358763, -7.32061, 1.15593, 2.51839)
 size = Vector3(0.235923, 1.29148, 9.00667)
 
 [node name="Wall5" type="CSGBox3D" parent="Floor"]
