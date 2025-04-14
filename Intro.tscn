@@ -1,14 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://djmniqstcsj8v"]
+[gd_scene load_steps=30 format=3 uid="uid://djmniqstcsj8v"]
 
 [ext_resource type="PackedScene" uid="uid://7a7gj7kpo53q" path="res://buzz.tscn" id="1_1wpnt"]
 [ext_resource type="Texture2D" uid="uid://db0mh7e3gxylf" path="res://Grass001_1K-JPG_Color.jpg" id="1_2dks7"]
+[ext_resource type="Texture2D" uid="uid://o13jxiscnc3p" path="res://Textures/Wood048_1K-JPG_Color.jpg" id="2_bqdsv"]
+[ext_resource type="ArrayMesh" uid="uid://djpblflpesl1t" path="res://3D Models/Copy of White Picket Fence/fence.obj" id="3_sgaet"]
+[ext_resource type="ArrayMesh" uid="uid://bb3fef76b1e34" path="res://3D Models/Copy of Lawn Mower/tinker.obj" id="4_aittj"]
+[ext_resource type="ArrayMesh" uid="uid://cqqxuew32oano" path="res://3D Models/Copy of #Garden Raised Bed - Mother's Day/tinker.obj" id="5_7g0hb"]
 [ext_resource type="Script" path="res://Label.gd" id="5_drur0"]
 [ext_resource type="PackedScene" uid="uid://2agx3tcuqkd1" path="res://Coin.tscn" id="5_ww6e7"]
 [ext_resource type="Script" path="res://Coin.gd" id="6_76rjy"]
 [ext_resource type="Script" path="res://Time Label.gd" id="7_s8gey"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rf1v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo3xo"]
 albedo_texture = ExtResource("1_2dks7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yjxy"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7oru"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj7vd"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65ysl"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mha3g"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xysuy"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21ar0"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8cos"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ma7q"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7do2o"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u00p"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xdn1"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etttp"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rg52v"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy2dn"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgvry"]
+albedo_texture = ExtResource("2_bqdsv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rsry"]
+albedo_texture = ExtResource("2_bqdsv")
 
 [sub_resource type="GDScript" id="GDScript_2ppte"]
 script/source = "extends CharacterBody3D
@@ -50,77 +105,134 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460791, 0, 0)
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.396406, 1.4953)
-material_override = SubResource("StandardMaterial3D_6rf1v")
 use_collision = true
 size = Vector3(25, 1, 25)
+material = SubResource("StandardMaterial3D_uo3xo")
 
 [node name="Wall1" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.15593, -1.4953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.15593, -0.168493)
 size = Vector3(0.235923, 1.29148, 10.2238)
+material = SubResource("StandardMaterial3D_5yjxy")
 
 [node name="Wall2" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(-0.0237517, -2.30635e-10, 0.999718, -0.0365985, 0.99933, -0.000869522, -0.999048, -0.0366088, -0.0237358, -6.10527, 1.18979, -1.4953)
 size = Vector3(0.235923, 1.29148, 8.78823)
+material = SubResource("StandardMaterial3D_k7oru")
 
 [node name="Wall3" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.99991, 0, 0.0134211, 0, 1, 0, -0.0134211, 0, 0.99991, -0.938531, 1.15593, 4.1451)
 size = Vector3(0.235923, 1.29148, 6.56535)
+material = SubResource("StandardMaterial3D_kj7vd")
 
 [node name="Wall4" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.0358763, 0, 0.999356, 0, 1, 0, -0.999356, 0, 0.0358763, -7.32061, 1.15593, 1.56623)
 size = Vector3(0.235923, 1.29148, 9.00667)
+material = SubResource("StandardMaterial3D_65ysl")
 
 [node name="Wall5" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(-1, 0, -0.000680652, 0, 1, 0, 0.000680652, 0, -1, -8.06727, 1.15593, 7.71875)
 size = Vector3(0.235923, 1.29148, 7.78144)
+material = SubResource("StandardMaterial3D_mha3g")
 
 [node name="Wall6" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(-0.949705, 0, -0.313147, 0, 1, 0, 0.313147, 0, -0.949705, -4.61313, 1.15593, 7.61043)
 size = Vector3(0.235923, 1.29148, 7.66558)
+material = SubResource("StandardMaterial3D_xysuy")
 
 [node name="Wall7" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.73508, 1.15593, 8.13764)
 size = Vector3(0.235923, 1.29148, 7.66558)
+material = SubResource("StandardMaterial3D_21ar0")
 
 [node name="Wall8" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.560668, 0, 0.828041, 0, 1, 0, -0.828041, 0, 0.560668, 7.59575, 1.15593, 4.88047)
 size = Vector3(0.235923, 1.29148, 8.97361)
+material = SubResource("StandardMaterial3D_r8cos")
 
 [node name="Wall9" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(-0.0638182, 0, 0.997962, 0, 1, 0, -0.997962, 0, -0.0638182, 6.72779, 1.15871, 10.1795)
 size = Vector3(0.235923, 1.29148, 7.66558)
+material = SubResource("StandardMaterial3D_3ma7q")
 
 [node name="Wall10" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(-0.0226176, 0, 0.999744, 0, 1, 0, -0.999744, 0, -0.0226176, -6.47984, 1.16404, -3.26342)
-size = Vector3(3.26492, 1.29148, 5.23845)
+transform = Transform3D(-0.0226176, 0, 0.999744, 0, 1, 0, -0.999744, 0, -0.0226176, -6.47984, 1.16404, -2.95095)
+size = Vector3(2.75717, 1.29148, 5.23845)
+material = SubResource("StandardMaterial3D_7do2o")
 
 [node name="Wall11" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.67551, 1.17508, 0.8218)
 size = Vector3(0.235923, 1.29148, 8.68563)
+material = SubResource("StandardMaterial3D_6u00p")
 
 [node name="Wall12" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.77454, 2.76192, -0.348475)
 size = Vector3(1.66153, 4.41507, 2.57468)
+material = SubResource("StandardMaterial3D_2xdn1")
 
 [node name="Wall13" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 8.01966, 3.14263, -5.26104)
+transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.51181, 3.14263, -5.26104)
+visible = false
 size = Vector3(0.294671, 5.13594, 8.14851)
+material = SubResource("StandardMaterial3D_etttp")
+
+[node name="Steps Inv Box" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35861, 1.9244, -7.76484)
+size = Vector3(5.1283, 1.76672, 4.41291)
 
 [node name="Step1" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 5.42183, 1.518, -1.63001)
 size = Vector3(1.02171, 0.388822, 1.63639)
+material = SubResource("StandardMaterial3D_rg52v")
 
 [node name="Step2" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.89382, 2.33608, -2.72143)
 size = Vector3(1.02171, 0.388822, 1.63639)
+material = SubResource("StandardMaterial3D_xy2dn")
 
 [node name="Step3" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.0228, 3.36663, -1.72467)
 size = Vector3(1.02171, 0.388822, 1.63639)
+material = SubResource("StandardMaterial3D_fgvry")
 
 [node name="Step4" type="CSGBox3D" parent="Floor"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.1186, 4.18968, 0.326849)
 size = Vector3(1.02171, 0.388822, 1.63639)
+material = SubResource("StandardMaterial3D_7rsry")
+
+[node name="Fence1" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.0867546, -0.000133662, 1.8161e-06, -8.18469e-06, -0.00204281, 0.0272205, -0.000116552, -0.0993476, -0.000559719, -8.77228, 0.538237, 11.1638)
+mesh = ExtResource("3_sgaet")
+skeleton = NodePath("../..")
+
+[node name="Fence2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.0867546, -0.000133662, 1.8161e-06, -8.18469e-06, -0.00204281, 0.0272205, -0.000116552, -0.0993476, -0.000559719, -8.64459, 0.538237, -12.8868)
+mesh = ExtResource("3_sgaet")
+skeleton = NodePath("../..")
+
+[node name="Fence3" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.000499632, 0.099346, 0.000559721, -8.18469e-06, -0.00204281, 0.0272205, 0.0867532, -0.000572349, -6.55561e-07, -11.2139, 0.538237, -8.46682)
+mesh = ExtResource("3_sgaet")
+skeleton = NodePath("../..")
+
+[node name="Fence4" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.000499632, 0.099346, 0.000559721, -8.18469e-06, -0.00204281, 0.0272205, 0.0867532, -0.000572349, -6.55561e-07, 12.8457, 0.538237, -8.46682)
+mesh = ExtResource("3_sgaet")
+skeleton = NodePath("../..")
+
+[node name="Tinker Lawnmoer" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-0.00815422, -0.126105, 0.000134219, -9.66543e-19, 0.000132286, 0.128388, -0.139055, 0.00739487, -7.87067e-06, 0.618186, 0.476723, -8.70844)
+mesh = ExtResource("4_aittj")
+skeleton = NodePath("../..")
+
+[node name="Tinker Garden" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-0.15955, 0, 0.0329271, 0, 0.198874, 0, -0.0693216, 0, -0.0757849, 6.2091, 7.31992, -5.22525)
+mesh = ExtResource("5_7g0hb")
+skeleton = NodePath("../..")
+
+[node name="Tinker Garden2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.159721, 0, -0.0327405, 0, 0.198874, 0, 0.0689287, 0, 0.0758657, 8.44096, 7.31992, -5.22525)
+mesh = ExtResource("5_7g0hb")
+skeleton = NodePath("../..")
 
 [node name="Ball" parent="." instance=ExtResource("1_1wpnt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85623, 0.755223, 1.09744)
@@ -161,7 +273,7 @@ script = ExtResource("7_s8gey")
 autostart = true
 
 [node name="Coin" parent="." instance=ExtResource("5_ww6e7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.406362, 0.286794, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17539, 0.286794, 0)
 script = ExtResource("6_76rjy")
 
 [node name="Timer" type="Timer" parent="Coin"]
