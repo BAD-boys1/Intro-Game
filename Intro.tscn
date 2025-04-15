@@ -104,7 +104,7 @@ func _physics_process(delta):
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460791, 0, 0)
 
 [node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.396406, 1.4953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.200858, 1.4953)
 use_collision = true
 size = Vector3(25, 1, 25)
 material = SubResource("StandardMaterial3D_uo3xo")
@@ -140,7 +140,7 @@ size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_xysuy")
 
 [node name="Wall7" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.91729, 1.15593, 8.13764)
+transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.91729, 0.973637, 8.13764)
 size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_21ar0")
 
