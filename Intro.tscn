@@ -140,7 +140,7 @@ size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_xysuy")
 
 [node name="Wall7" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.73508, 1.15593, 8.13764)
+transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.91729, 1.15593, 8.13764)
 size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_21ar0")
 
