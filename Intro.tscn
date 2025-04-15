@@ -1,7 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://djmniqstcsj8v"]
+[gd_scene load_steps=35 format=3 uid="uid://djmniqstcsj8v"]
 
 [ext_resource type="PackedScene" uid="uid://7a7gj7kpo53q" path="res://buzz.tscn" id="1_1wpnt"]
-[ext_resource type="Texture2D" uid="uid://db0mh7e3gxylf" path="res://Grass001_1K-JPG_Color.jpg" id="1_2dks7"]
+[ext_resource type="Texture2D" uid="uid://db0mh7e3gxylf" path="res://Textures/Grass001_1K-JPG_Color.jpg" id="1_jfxnw"]
 [ext_resource type="Texture2D" uid="uid://o13jxiscnc3p" path="res://Textures/Wood048_1K-JPG_Color.jpg" id="2_bqdsv"]
 [ext_resource type="ArrayMesh" uid="uid://djpblflpesl1t" path="res://3D Models/Copy of White Picket Fence/fence.obj" id="3_sgaet"]
 [ext_resource type="ArrayMesh" uid="uid://bb3fef76b1e34" path="res://3D Models/Copy of Lawn Mower/tinker.obj" id="4_aittj"]
@@ -9,10 +9,14 @@
 [ext_resource type="Script" path="res://Label.gd" id="5_drur0"]
 [ext_resource type="PackedScene" uid="uid://2agx3tcuqkd1" path="res://Coin.tscn" id="5_ww6e7"]
 [ext_resource type="Script" path="res://Coin.gd" id="6_76rjy"]
+[ext_resource type="ArrayMesh" uid="uid://to05iabe8u6w" path="res://3D Models/Copy of Weeds/tinker.obj" id="6_h5fau"]
+[ext_resource type="ArrayMesh" uid="uid://mxy72gqcv4ka" path="res://3D Models/Copy of Mr Scarecrow/tinker.obj" id="7_6ca5u"]
 [ext_resource type="Script" path="res://Time Label.gd" id="7_s8gey"]
+[ext_resource type="Texture2D" uid="uid://dthhkp7vs2c2v" path="res://Textures/Ground037_1K-JPG_Color.jpg" id="8_0x0jy"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="10_cjmgk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo3xo"]
-albedo_texture = ExtResource("1_2dks7")
+albedo_texture = ExtResource("1_jfxnw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yjxy"]
 albedo_texture = ExtResource("2_bqdsv")
@@ -65,6 +69,9 @@ albedo_texture = ExtResource("2_bqdsv")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rsry"]
 albedo_texture = ExtResource("2_bqdsv")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_io5no"]
+albedo_texture = ExtResource("8_0x0jy")
+
 [sub_resource type="GDScript" id="GDScript_2ppte"]
 script/source = "extends CharacterBody3D
 
@@ -89,10 +96,19 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var input_dir = Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
 	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if Input.is_action_pressed(\"ui_left\"):
+	if Input.is_action_pressed(\"ui_up\"):
 		velocity.x = -SPEED
-	elif Input.is_action_pressed(\"ui_right\"):
+		$MeshInstance3D.rotate_z(deg_to_rad(6))
+	elif Input.is_action_pressed(\"ui_down\"):
 		velocity.x = SPEED
+		$MeshInstance3D.rotate_z(deg_to_rad(-6))
+	elif Input.is_action_pressed(\"ui_left\"):
+		velocity.z = SPEED
+		$MeshInstance3D.rotate_x(deg_to_rad(-6))
+	elif Input.is_action_pressed(\"ui_right\"):
+		velocity.z = -SPEED
+		$MeshInstance3D.rotate_x(deg_to_rad(6))
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -103,140 +119,255 @@ func _physics_process(delta):
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460791, 0, 0)
 
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.200858, 1.4953)
+[node name="Floor1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 10.7789, 1.4953)
 use_collision = true
 size = Vector3(25, 1, 25)
 material = SubResource("StandardMaterial3D_uo3xo")
 
-[node name="Wall1" type="CSGBox3D" parent="Floor"]
+[node name="Wall1" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.15593, -0.168493)
 size = Vector3(0.235923, 1.29148, 10.2238)
 material = SubResource("StandardMaterial3D_5yjxy")
 
-[node name="Wall2" type="CSGBox3D" parent="Floor"]
+[node name="Wall2" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(-0.0237517, -2.30635e-10, 0.999718, -0.0365985, 0.99933, -0.000869522, -0.999048, -0.0366088, -0.0237358, -6.10527, 1.18979, -1.4953)
 size = Vector3(0.235923, 1.29148, 8.78823)
 material = SubResource("StandardMaterial3D_k7oru")
 
-[node name="Wall3" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(0.99991, 0, 0.0134211, 0, 1, 0, -0.0134211, 0, 0.99991, -0.938531, 1.15593, 4.1451)
-size = Vector3(0.235923, 1.29148, 6.56535)
+[node name="Wall3" type="CSGBox3D" parent="Floor1"]
+transform = Transform3D(0.989013, 0, -0.147827, 0, 1, 0, 0.147827, 0, 0.989013, -1.32498, 1.15593, 5.20665)
+size = Vector3(0.235923, 1.29148, 7.24914)
 material = SubResource("StandardMaterial3D_kj7vd")
 
-[node name="Wall4" type="CSGBox3D" parent="Floor"]
+[node name="Wall4" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.0358763, 0, 0.999356, 0, 1, 0, -0.999356, 0, 0.0358763, -7.32061, 1.15593, 1.56623)
 size = Vector3(0.235923, 1.29148, 9.00667)
 material = SubResource("StandardMaterial3D_65ysl")
 
-[node name="Wall5" type="CSGBox3D" parent="Floor"]
+[node name="Wall5" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(-1, 0, -0.000680652, 0, 1, 0, 0.000680652, 0, -1, -8.06727, 1.15593, 7.71875)
 size = Vector3(0.235923, 1.29148, 7.78144)
 material = SubResource("StandardMaterial3D_mha3g")
 
-[node name="Wall6" type="CSGBox3D" parent="Floor"]
+[node name="Wall6" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(-0.949705, 0, -0.313147, 0, 1, 0, 0.313147, 0, -0.949705, -4.61313, 1.15593, 7.61043)
 size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_xysuy")
 
-[node name="Wall7" type="CSGBox3D" parent="Floor"]
+[node name="Wall7" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.820571, 0, -0.571544, 0, 1, 0, 0.571544, 0, 0.820571, 1.91729, 0.973637, 8.13764)
 size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_21ar0")
 
-[node name="Wall8" type="CSGBox3D" parent="Floor"]
+[node name="Wall8" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.560668, 0, 0.828041, 0, 1, 0, -0.828041, 0, 0.560668, 7.59575, 1.15593, 4.88047)
 size = Vector3(0.235923, 1.29148, 8.97361)
 material = SubResource("StandardMaterial3D_r8cos")
 
-[node name="Wall9" type="CSGBox3D" parent="Floor"]
+[node name="Wall9" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(-0.0638182, 0, 0.997962, 0, 1, 0, -0.997962, 0, -0.0638182, 6.72779, 1.15871, 10.1795)
 size = Vector3(0.235923, 1.29148, 7.66558)
 material = SubResource("StandardMaterial3D_3ma7q")
 
-[node name="Wall10" type="CSGBox3D" parent="Floor"]
+[node name="Wall10" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(-0.0226176, 0, 0.999744, 0, 1, 0, -0.999744, 0, -0.0226176, -6.47984, 1.16404, -2.95095)
 size = Vector3(2.75717, 1.29148, 5.23845)
 material = SubResource("StandardMaterial3D_7do2o")
 
-[node name="Wall11" type="CSGBox3D" parent="Floor"]
+[node name="Wall11" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.67551, 1.17508, 0.8218)
 size = Vector3(0.235923, 1.29148, 8.68563)
 material = SubResource("StandardMaterial3D_6u00p")
 
-[node name="Wall12" type="CSGBox3D" parent="Floor"]
+[node name="Wall12" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.77454, 2.76192, -0.348475)
 size = Vector3(1.66153, 4.41507, 2.57468)
 material = SubResource("StandardMaterial3D_2xdn1")
 
-[node name="Wall13" type="CSGBox3D" parent="Floor"]
+[node name="Wall13" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.51181, 3.14263, -5.26104)
 visible = false
 size = Vector3(0.294671, 5.13594, 8.14851)
 material = SubResource("StandardMaterial3D_etttp")
 
-[node name="Steps Inv Box" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35861, 1.9244, -7.76484)
+[node name="Steps Inv Box" type="CSGBox3D" parent="Floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35861, -0.278061, -7.76484)
+operation = 2
 size = Vector3(5.1283, 1.76672, 4.41291)
 
-[node name="Step1" type="CSGBox3D" parent="Floor"]
+[node name="Step1" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 5.42183, 1.518, -1.63001)
 size = Vector3(1.02171, 0.388822, 1.63639)
 material = SubResource("StandardMaterial3D_rg52v")
 
-[node name="Step2" type="CSGBox3D" parent="Floor"]
+[node name="Step2" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 7.89382, 2.33608, -2.72143)
 size = Vector3(1.02171, 0.388822, 1.63639)
 material = SubResource("StandardMaterial3D_xy2dn")
 
-[node name="Step3" type="CSGBox3D" parent="Floor"]
+[node name="Step3" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.0228, 3.36663, -1.72467)
 size = Vector3(1.02171, 0.388822, 1.63639)
 material = SubResource("StandardMaterial3D_fgvry")
 
-[node name="Step4" type="CSGBox3D" parent="Floor"]
+[node name="Step4" type="CSGBox3D" parent="Floor1"]
 transform = Transform3D(0.38597, 0, 0.922511, 0, 1, 0, -0.922511, 0, 0.38597, 10.1186, 4.18968, 0.326849)
 size = Vector3(1.02171, 0.388822, 1.63639)
 material = SubResource("StandardMaterial3D_7rsry")
 
-[node name="Fence1" type="MeshInstance3D" parent="Floor"]
+[node name="Fence1" type="MeshInstance3D" parent="Floor1"]
 transform = Transform3D(0.0867546, -0.000133662, 1.8161e-06, -8.18469e-06, -0.00204281, 0.0272205, -0.000116552, -0.0993476, -0.000559719, -8.77228, 0.538237, 11.1638)
 mesh = ExtResource("3_sgaet")
 skeleton = NodePath("../..")
 
-[node name="Fence2" type="MeshInstance3D" parent="Floor"]
+[node name="Fence2" type="MeshInstance3D" parent="Floor1"]
 transform = Transform3D(0.0867546, -0.000133662, 1.8161e-06, -8.18469e-06, -0.00204281, 0.0272205, -0.000116552, -0.0993476, -0.000559719, -8.64459, 0.538237, -12.8868)
 mesh = ExtResource("3_sgaet")
 skeleton = NodePath("../..")
 
-[node name="Fence3" type="MeshInstance3D" parent="Floor"]
+[node name="Fence3" type="MeshInstance3D" parent="Floor1"]
 transform = Transform3D(0.000499632, 0.099346, 0.000559721, -8.18469e-06, -0.00204281, 0.0272205, 0.0867532, -0.000572349, -6.55561e-07, -11.2139, 0.538237, -8.46682)
 mesh = ExtResource("3_sgaet")
 skeleton = NodePath("../..")
 
-[node name="Fence4" type="MeshInstance3D" parent="Floor"]
+[node name="Fence4" type="MeshInstance3D" parent="Floor1"]
 transform = Transform3D(0.000499632, 0.099346, 0.000559721, -8.18469e-06, -0.00204281, 0.0272205, 0.0867532, -0.000572349, -6.55561e-07, 12.8457, 0.538237, -8.46682)
 mesh = ExtResource("3_sgaet")
 skeleton = NodePath("../..")
 
-[node name="Tinker Lawnmoer" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(-0.00815422, -0.126105, 0.000134219, -9.66543e-19, 0.000132286, 0.128388, -0.139055, 0.00739487, -7.87067e-06, 0.618186, 0.476723, -8.70844)
+[node name="Tinker Lawnmoer" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(-0.00308971, -0.126291, 0.000134416, -9.66543e-19, 0.000132286, 0.128388, -0.13926, 0.00280201, -2.98229e-06, 0.618186, 0.476723, -7.24928)
 mesh = ExtResource("4_aittj")
 skeleton = NodePath("../..")
 
-[node name="Tinker Garden" type="MeshInstance3D" parent="Floor"]
+[node name="Tinker Garden" type="MeshInstance3D" parent="Floor1"]
 transform = Transform3D(-0.15955, 0, 0.0329271, 0, 0.198874, 0, -0.0693216, 0, -0.0757849, 6.2091, 7.31992, -5.22525)
 mesh = ExtResource("5_7g0hb")
 skeleton = NodePath("../..")
 
-[node name="Tinker Garden2" type="MeshInstance3D" parent="Floor"]
+[node name="Tinker Garden2" type="MeshInstance3D" parent="Floor1"]
 transform = Transform3D(0.159721, 0, -0.0327405, 0, 0.198874, 0, 0.0689287, 0, 0.0758657, 8.44096, 7.31992, -5.22525)
 mesh = ExtResource("5_7g0hb")
 skeleton = NodePath("../..")
 
+[node name="Tinker Weeds" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00919744, 0, 0, 0, 2.41201e-05, -0.111074, 0, 0.0105496, 0.000253955, -1.98587, 0.83956, -2.94572)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds2" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00919744, 0, 0, 0, 2.41201e-05, -0.111074, 0, 0.0105496, 0.000253955, -8.83956, 0.83956, -0.675071)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds3" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00919744, 0, 0, 0, 2.41201e-05, -0.111074, 0, 0.0105496, 0.000253955, -10.3573, 0.83956, -2.63331)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds4" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00846188, 0, 0, 0, 2.16014e-05, -0.111047, 0, 0.00944798, 0.000253893, -10.6379, 0.83956, 2.98769)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds5" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00846188, 0, 0, 0, 2.16014e-05, -0.111047, 0, 0.00944798, 0.000253893, -6.90577, 0.734631, 10.0612)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds6" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00846188, 0, 0, 0, 2.16014e-05, -0.111047, 0, 0.00944798, 0.000253893, -1.66746, 0.734631, 9.98329)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds7" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00524314, 0, 0, 0, 1.42405e-05, -0.11096, 0, 0.00622847, 0.000253695, 1.90384, 0.734631, 4.54984)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds8" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.0105034, 0, 0, 0, 2.8585e-05, -0.111216, 0, 0.0125025, 0.000254279, 4.30143, 0.734631, 7.75722)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds9" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.0173164, 0, 0, 0, 3.76196e-05, -0.111235, 0, 0.016454, 0.000254323, 9.6933, 0.788335, 8.69573)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds10" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00846188, 0, 0, 0, 2.16014e-05, -0.111047, 0, 0.00944798, 0.000253893, 9.85777, 0.83956, 3.82711)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds11" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00846188, 0, 0, 0, 2.16014e-05, -0.111047, 0, 0.00944798, 0.000253893, 9.46169, 0.839559, -2.05388)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds12" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00846188, 0, 0, 0, 2.16014e-05, -0.111047, 0, 0.00944798, 0.000253893, 6.0792, 0.839559, -3.16541)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds13" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.0133864, 0, 0, 0, 3.57771e-05, -0.111187, 0, 0.0156481, 0.000254213, 9.78122, 0.869383, -6.72605)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds14" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.0129527, 0, 0, 0, 3.22535e-05, -0.111162, 0, 0.014107, 0.000254155, 6.69023, 0.869383, -9.85321)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds15" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.0079301, 0, 0, 0, 2.27648e-05, -0.111087, 0, 0.00995685, 0.000253984, -0.908967, 0.869381, -7.7384)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds16" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.0079301, 0, 0, 0, 2.27648e-05, -0.111087, 0, 0.00995685, 0.000253984, -3.44675, 0.869381, -10.4612)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Weeds17" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00637469, 0, 0, 0, 1.59171e-05, -0.11101, 0, 0.00696179, 0.000253809, -4.50614, 0.869381, 4.36697)
+mesh = ExtResource("6_h5fau")
+skeleton = NodePath("../..")
+
+[node name="Tinker Scarecow" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(0.00638207, 0.0506513, -0.00567735, 0, 0.00406678, 0.0723286, 0.0421945, -0.0076612, 0.00085872, 11.1683, 0.5, -10.2965)
+mesh = ExtResource("7_6ca5u")
+skeleton = NodePath("../..")
+
+[node name="Tinker Scarecow2" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(-0.138709, 0.0012777, 8.01549e-05, 0.000301221, -0.00176925, 0.0307451, 0.00246589, 0.0720882, 0.000753155, -6.69754, 1.83559, -2.52016)
+mesh = ExtResource("7_6ca5u")
+skeleton = NodePath("../..")
+
+[node name="Tinker Scarecow3" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(-0.0376446, -0.024128, 0.00270442, 0, 0.00406678, 0.0723286, -0.0200995, 0.0451895, -0.00506515, -10.9108, 0.5, 10.7656)
+mesh = ExtResource("7_6ca5u")
+skeleton = NodePath("../..")
+
+[node name="Tinker Scarecow4" type="MeshInstance3D" parent="Floor1"]
+transform = Transform3D(-0.0334178, 0.0318591, -0.00357098, -1.40237e-10, 0.00406678, 0.0723286, 0.0265398, 0.0401155, -0.00449642, 11.3568, 0.5, 6.61257)
+mesh = ExtResource("7_6ca5u")
+skeleton = NodePath("../..")
+
+[node name="Floor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3375, 6.75673, 1.4953)
+material_override = SubResource("StandardMaterial3D_io5no")
+size = Vector3(25, 1, 25)
+
 [node name="Ball" parent="." instance=ExtResource("1_1wpnt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85623, 0.755223, 1.09744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85623, 11.6974, 1.09744)
 script = SubResource("GDScript_2ppte")
+
+[node name="Camera3D" type="Camera3D" parent="Ball"]
+transform = Transform3D(0.173867, -0.247612, 0.953131, 0.00820848, 0.968203, 0.25003, -0.984735, -0.0356483, 0.170371, 2.35971, 1.62209, 0.202958)
+script = ExtResource("10_cjmgk")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -273,16 +404,13 @@ script = ExtResource("7_s8gey")
 autostart = true
 
 [node name="Coin" parent="." instance=ExtResource("5_ww6e7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17539, 0.286794, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17539, 11.6455, 0)
 script = ExtResource("6_76rjy")
 
 [node name="Timer" type="Timer" parent="Coin"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.978803, 0.204804, 0, -0.204804, 0.978803, -0.859555, 3.16625, 8.85575)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.559453, 0.828862, 0, -0.828862, 0.559453, -3.16071, 8.99666, 6.31993)
+transform = Transform3D(1, 0, 0, 0, 0.559453, 0.828862, 0, -0.828862, 0.559453, -3.16071, 18.4639, 6.31993)
 
 [connection signal="timeout" from="Control/Time Label/Timer" to="Control/Time Label" method="_on_timer_timeout"]
 [connection signal="coinCollected" from="Coin" to="Control/Label" method="_on_coin_coin_collected"]
