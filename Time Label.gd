@@ -15,4 +15,4 @@ func _on_timer_timeout():
 	timeLeft = timeLeft - 1
 	text = "Time: " + str(timeLeft)
 	if timeLeft == 0:
-		$Timer.stop()
+		
