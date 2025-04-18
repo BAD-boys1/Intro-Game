@@ -7,6 +7,7 @@
 [node name="jvr" type="CharacterBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.15199, 0, 0, 0, 3.68499, 0, 0, 0, 3.38854, 0, 0, 0)
 mesh = SubResource("SphereMesh_y04b5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
